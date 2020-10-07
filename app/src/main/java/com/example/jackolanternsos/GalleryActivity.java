@@ -14,6 +14,7 @@ public class GalleryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+        getSupportActionBar().hide();
         Button generateBTN= findViewById(R.id.GenerateBTN);
         generateBTN.setOnClickListener(new View.OnClickListener() {
             @Override
