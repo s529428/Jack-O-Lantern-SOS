@@ -8,8 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-//hello Group Mates
-    //Hi there!
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToGallery(View v){
         Intent goGallery = new Intent(this, GalleryActivity.class);
-        startActivityForResult(goGallery, 1);
+        startActivity(goGallery);
+        //startActivityForResult(goGallery, 0);
     }
 }
