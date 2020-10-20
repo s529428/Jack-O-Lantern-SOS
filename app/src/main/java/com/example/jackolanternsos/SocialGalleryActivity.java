@@ -16,7 +16,6 @@ public class SocialGalleryActivity extends AppCompatActivity {
     }
 
     public void goToHome(View v){
-        Intent goHome = new Intent(this, MainActivity.class);
-        startActivity(goHome);
+        finish();
     }
 }

@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity {
         Intent goSocialGallery = new Intent(this, SocialGalleryActivity.class);
         startActivity(goSocialGallery);
     }
+
+    public void rerollFace(){
+        //Check which features are unlocked
+        //Randomly select image from the features image folder
+    }
 }
