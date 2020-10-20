@@ -18,4 +18,11 @@ public class PrintingActivity extends AppCompatActivity {
     public void goToHome(View v){
         finish();
     }
+
+    public void printPreview(){
+        //grab the face and put in the preview box
+    }
+    public void printFace(double height, double width){
+        //Start the printing process with a scaled image based on the height and width
+    }
 }

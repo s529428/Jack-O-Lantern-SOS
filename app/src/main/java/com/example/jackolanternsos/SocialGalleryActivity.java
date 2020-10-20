@@ -18,4 +18,16 @@ public class SocialGalleryActivity extends AppCompatActivity {
     public void goToHome(View v){
         finish();
     }
+
+    public void dialogOption(){
+        //Give the user the option btwn print edit and cancel.
+        //Dialog box
+    }
+
+    public void pullFace(){
+        //Save selected face to local gallery
+    }
+
+    //RECYCLER VIEW
+    //LIKE INSTAGRAM
 }

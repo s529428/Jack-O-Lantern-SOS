@@ -25,4 +25,12 @@ public class GalleryActivity extends AppCompatActivity {
         });
     }
 
+    public void dialogOption(){
+        //Give the user the option btwn print edit and cancel.
+        //Dialog box
+    }
+
+    //RECYCLER VIEW
+    //LIKE INSTAGRAM
+
 }

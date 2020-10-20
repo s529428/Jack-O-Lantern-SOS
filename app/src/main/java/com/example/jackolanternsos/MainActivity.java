@@ -36,4 +36,10 @@ public class MainActivity extends AppCompatActivity {
         //Check which features are unlocked
         //Randomly select image from the features image folder
     }
+
+    public void saveFace(){
+        //Saves the current face to the local gallery
+        //Pop-up dialog box to save the face public or private
+    }
+
 }
