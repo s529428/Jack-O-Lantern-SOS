@@ -74,6 +74,10 @@ private ArrayList<String> pumkinData =null;
         });
         //getting saved image
         //json = getIntent().getStringExtra(MainActivity.KEY_MINUTES," "); not ready in other method
+        //if(json does not equal null){
+        myModel.faceList.add(0,new pumkinfaceModel.faceData(json));
+        pumkinServer.notifyItemInserted(0);
+        //}
     }
     public void dialogOption(){
         //Give the user the option btwn print edit and cancel.
