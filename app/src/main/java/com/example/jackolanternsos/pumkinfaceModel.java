@@ -23,11 +23,19 @@ public class pumkinfaceModel {
         //pulling in stored faces
     }
     private static pumkinfaceModel singleton = null;
+    //creating another singleton for the social gallery
+    private static pumkinfaceModel singleton1 =null;
 
     public static pumkinfaceModel getpumkinfaceModel() {
         if (singleton == null) {
             singleton = new pumkinfaceModel();
         }
         return singleton;
+    }
+    public static pumkinfaceModel getpumkinfaceModelSocial() {
+        if (singleton1 == null) {
+            singleton1 = new pumkinfaceModel();
+        }
+        return singleton1;
     }
 }
