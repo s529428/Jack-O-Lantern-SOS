@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 import org.json.JSONObject;
@@ -47,14 +48,26 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
     }
 
     public void rerollFace(){
+        //Get the image views
+        ImageView leftEyeIV = findViewById(R.id.leftEyeIV);
+        ImageView rightEyeIV = findViewById(R.id.rightEyeIV);
+        ImageView noseIV = findViewById(R.id.noseIV);
+        ImageView mouthIV = findViewById(R.id.mouthIV);
         //Check which features are unlocked
         Switch leftEyeSW = findViewById(R.id.leftEyeSW);
         Switch rightEyeSW = findViewById(R.id.rightEyeSW);
         Switch noseSW = findViewById(R.id.noseSW);
         Switch mouthSW = findViewById(R.id.mouthSW);
         //Randomly select image from the features image folder
-        if (leftEyeSW.isChecked()){
-            //Randomly select and image from the Eye image options
+        if (!leftEyeSW.isChecked()){
+            //Randomly select an image from the Eye image options
+        }else if(!rightEyeSW.isChecked()){
+            //Randomly select an image from the Eye image options
+        }else if(!noseSW.isChecked()){
+            //Randomly select an image from the Nose image options
+        }else if(!mouthSW.isChecked()){
+            //Randomly select an image from the Mouth image options
+
         }
     }
 
