@@ -6,16 +6,4 @@
         <item>@string/saveOption1</item>
         <item>@string/saveOption2</item>
     </string-array>
-    <string name="eye1">eye1.png</string>
-    <string name="eye2">eye2.png</string>
-    <string name="eye3">eye3.png</string>
-    <string name="eye4">eye4.png</string>
-    <string name="eye5">eye5.png</string>
-    <string-array name="eyeOptions">
-        <item>@string/eye1</item>
-        <item>@string/eye2</item>
-        <item>@string/eye3</item>
-        <item>@string/eye4</item>
-        <item>@string/eye5</item>
-    </string-array>
 </resources>
