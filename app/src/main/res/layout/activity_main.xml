@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B65232"
     tools:context=".MainActivity">
 
     <Button
@@ -12,19 +13,24 @@
         android:layout_height="wrap_content"
         android:onClick="goToGallery"
         android:text="Gallery"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintVertical_bias="0.084"
+        />
 
     <Button
         android:id="@+id/socialBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#000000"
         android:onClick="goToSocialGallery"
         android:text="Social Gallery"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.771"
@@ -37,6 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Roll again!"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="613dp"
         android:layout_marginBottom="70dp"
+        android:background="#000000"
         android:text="Save"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.198"
@@ -64,6 +74,8 @@
         android:layout_marginBottom="70dp"
         android:onClick="goToPrint"
         android:text="Print"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.801"
@@ -72,8 +84,8 @@
 
     <ImageView
         android:id="@+id/leftEyeIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="67dp"
         android:layout_marginBottom="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,12 +93,12 @@
         app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/galleryBTN"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/eye4" />
 
     <ImageView
         android:id="@+id/rightEyeIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="67dp"
         android:layout_marginBottom="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -94,12 +106,12 @@
         app:layout_constraintHorizontal_bias="0.792"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/socialBTN"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/eye4" />
 
     <ImageView
         android:id="@+id/noseIV"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="190dp"
         android:layout_marginBottom="375dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -108,12 +120,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/socialBTN"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/nose3" />
 
     <ImageView
         android:id="@+id/mouthIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/rollBTN"
@@ -121,7 +133,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noseIV"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/mouth5" />
 
     <Switch
         android:id="@+id/leftEyeSW"
@@ -129,6 +141,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:layout_marginBottom="16dp"
+        android:thumb="@android:drawable/ic_lock_idle_lock"
+        android:thumbTint="#000000"
+        android:trackTint="#30AC35"
         app:layout_constraintBottom_toTopOf="@+id/leftEyeIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.223"
@@ -140,8 +155,11 @@
         android:id="@+id/rightEyeSW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="26dp"
         android:layout_marginBottom="16dp"
+        android:thumb="@android:drawable/ic_lock_idle_lock"
+        android:thumbTint="#000000"
+        android:trackTint="#30AC35"
         app:layout_constraintBottom_toTopOf="@+id/rightEyeIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.748"
@@ -154,6 +172,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="22dp"
+        android:thumb="@android:drawable/ic_lock_idle_lock"
+        android:thumbTint="#000000"
+        android:trackTint="#30AC35"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/noseIV"
         app:layout_constraintHorizontal_bias="0.0"
@@ -167,10 +188,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="35dp"
+        android:thumb="@android:drawable/ic_lock_idle_lock"
+        android:thumbTint="#000000"
+        android:trackTint="#30AC35"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/mouthIV"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.604" />
+        app:layout_constraintVertical_bias="0.68" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.jackolanternsos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.Switch;
 
 import org.json.JSONObject;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements SaveDialogFragment.SaveCallBack {
 
@@ -30,6 +33,15 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
                 saveDialogFragment.show(getSupportFragmentManager(), "Save Options");
             }
         });
+
+        //Reroll Face button function call
+        Button rollBTN = findViewById(R.id.rollBTN);
+        rollBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rerollFace();
+            }
+        });
     }
 
     public void goToGallery(View v){
@@ -47,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         startActivity(goSocialGallery);
     }
 
+
     public void rerollFace(){
         //Get the image views
         ImageView leftEyeIV = findViewById(R.id.leftEyeIV);
@@ -59,15 +72,36 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         Switch noseSW = findViewById(R.id.noseSW);
         Switch mouthSW = findViewById(R.id.mouthSW);
         //Randomly select image from the features image folder
+        Random random = new Random();
         if (!leftEyeSW.isChecked()){
             //Randomly select an image from the Eye image options
-        }else if(!rightEyeSW.isChecked()){
+            String string = "eye"+(random.nextInt(4)+1);
+            leftEyeIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
+        }
+        if(!rightEyeSW.isChecked()){
             //Randomly select an image from the Eye image options
-        }else if(!noseSW.isChecked()){
+            String string = "eye"+(random.nextInt(4)+1);
+            rightEyeIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
+        }
+        if(!noseSW.isChecked()){
             //Randomly select an image from the Nose image options
-        }else if(!mouthSW.isChecked()){
+            String string = "nose"+(random.nextInt(4)+1);
+            noseIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
+        }
+        if(!mouthSW.isChecked()){
             //Randomly select an image from the Mouth image options
+            String string = "mouth"+(random.nextInt(4)+1);
+            mouthIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
 
+        }
+    }
+
+    protected final static int getResourceID(final String resName, final String resType, final Context context){
+        final int ResourceID = context.getResources().getIdentifier(resName, resType, context.getApplicationInfo().packageName);
+        if(ResourceID == 0){
+            throw new IllegalArgumentException("No resource found with name "+resName);
+        }else{
+            return ResourceID;
         }
     }
 
