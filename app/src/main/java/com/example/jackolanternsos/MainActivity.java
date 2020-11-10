@@ -11,6 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
+
 import org.json.JSONObject;
 
 import java.util.Random;
@@ -21,6 +27,18 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Touch that database baby!
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                .applicationId(getString(R.string.back4app_app_id))
+                .clientKey(getString(R.string.back4app_client_key))
+                .server(getString(R.string.back4app_server_url))
+                .build()
+        );
+
+        //Let's check that it touched lol
+        //ParseInstallation.getCurrentInstallation().saveInBackground();
+
         //Hide the top bar, that's precious space
         getSupportActionBar().hide();
 
@@ -113,13 +131,27 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
 
     @Override
     public void selectedOption(int optionIndex) {
-        //if private, write to private JSON file
+        ImageView leftEyeIV = findViewById(R.id.leftEyeIV);
+        ImageView rightEyeIV = findViewById(R.id.rightEyeIV);
+        ImageView noseIV = findViewById(R.id.noseIV);
+        ImageView mouthIV = findViewById(R.id.mouthIV);
+        //if private, write to private
         if(optionIndex == 1){
             //write to the JSON
         }
-        //if public, write to public JSON file
+        //if public, write to public
         else if(optionIndex == 0) {
-            //magic goes here
+            ParseObject pumpkinFace = new ParseObject("PublicPumkinFace");
+            pumpkinFace.put("LeftEye", String.valueOf(leftEyeIV.getDrawable()));
+            pumpkinFace.put("RightEye", String.valueOf(rightEyeIV.getDrawable()));
+            pumpkinFace.put("Nose", String.valueOf(noseIV.getDrawable()));
+            pumpkinFace.put("Mouth", String.valueOf(mouthIV.getDrawable()));
+            pumpkinFace.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Log.d("ERROR", ""+e);
+                }
+            });
         }
     }
 }

@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Jack O’ Lantern SOS</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id">MNSyBTC4C3stpe4vXdfKllbJGSv2iy7TKBcQU2oo</string>
+    <string name="back4app_client_key">HrqAcFu2G84BMDP2Wjpr6zYFlJ1G6MjBCYtK7mbO</string>
+
     <string name="saveOption1">Public</string>
     <string name ="saveOption2">Private</string>
     <string-array name="saveOptions">
