@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B65232"
     tools:context=".SocialGalleryActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -34,7 +35,7 @@
         android:id="@+id/helpTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Others Faces"
+        android:text="Social Gallery"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/GenerateBTN"
         app:layout_constraintEnd_toEndOf="parent"
