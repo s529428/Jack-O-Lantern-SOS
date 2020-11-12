@@ -43,7 +43,7 @@ public class SocialGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_social_gallery);
         getSupportActionBar().hide();
         //assigning imstance varibles to values
-        myModel= pumkinfaceModel.getpumkinfaceModelSocial(1);
+        myModel= pumkinfaceModel.getpumkinfaceModelSocial();
         pumkinServer = new pumkinAdapter();
         // Attach it to the RecyclerView
         pumkinRV = findViewById(R.id.pumkinRV);

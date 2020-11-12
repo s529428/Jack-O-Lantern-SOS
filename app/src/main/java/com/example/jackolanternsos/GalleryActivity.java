@@ -30,7 +30,7 @@ private ArrayList<String> pumkinData =null;
             if (view != null) {
                 //when a image is clicked a dialog box will pop up with opts on what to do
                 RecyclerView.ViewHolder holder = pumkinRV.getChildViewHolder(view);
-                if (holder instanceof pumkinAdapter.pumkinViewHolder) {
+                if (holder instanceof pumkinPrivateAdaptor.pumkinViewHolder) {
                     int position = holder.getAdapterPosition();
                     dialogOption();
                     return true;
@@ -45,7 +45,7 @@ private ArrayList<String> pumkinData =null;
         setContentView(R.layout.activity_gallery);
         getSupportActionBar().hide();
         //assigning imstance varibles to values
-        myModel= pumkinfaceModel.getpumkinfaceModelSocial(0);
+        myModel= pumkinfaceModel.getpumkinfaceModel();
         pumkinServer = new pumkinPrivateAdaptor();
         // Attach it to the RecyclerView
         pumkinRV = findViewById(R.id.pumkinRV);
@@ -72,12 +72,7 @@ private ArrayList<String> pumkinData =null;
                 finish();
             }
         });
-        //getting saved image
-        //json = getIntent().getStringExtra(MainActivity.KEY_MINUTES," "); not ready in other method
-        //if(json does not equal null){
-        //myModel.faceList.add(0,new pumkinfaceModel.faceData(json));
-        //pumkinServer.notifyItemInserted(0);
-        //}
+
     }
     public void dialogOption(){
         //Give the user the option btwn print edit and cancel.

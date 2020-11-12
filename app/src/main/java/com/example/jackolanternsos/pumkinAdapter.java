@@ -1,6 +1,7 @@
 package com.example.jackolanternsos;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class pumkinAdapter extends RecyclerView.Adapter<pumkinAdapter.pumkinView
     }
     private pumkinfaceModel myModel;
     public pumkinAdapter(){
-        myModel= pumkinfaceModel.getpumkinfaceModelSocial(1);
+        myModel= pumkinfaceModel.getpumkinfaceModelSocial();
     }
     @NonNull
     @Override
@@ -31,13 +32,14 @@ public class pumkinAdapter extends RecyclerView.Adapter<pumkinAdapter.pumkinView
         return vh;
     }
     public void onBindViewHolder(@NonNull pumkinViewHolder holder, int position) {
+        Log.d("Adaptor","Bind in adaptor");
         //finding all the elements of the face
         ImageView leftEye = holder.itemView.findViewById(R.id.leftEyeIV5);
         ImageView rightEye = holder.itemView.findViewById(R.id.rightEyeIV5);
         ImageView nose = holder.itemView.findViewById(R.id.noseIV5);
         ImageView mouth = holder.itemView.findViewById(R.id.mouthIV5);
         //setting image to previous faces
-        String lEye = myModel.faceList.get(position).lefteye;
+        String lEye = myModel.socailfacelist.get(position).lefteye;
         //have to brute force images since it is in a model
         if(lEye.equals("eye1")){
             leftEye.setImageResource(R.drawable.eye1);
@@ -54,7 +56,7 @@ public class pumkinAdapter extends RecyclerView.Adapter<pumkinAdapter.pumkinView
         else if(lEye.equals("eye5")){
             leftEye.setImageResource(R.drawable.eye5);
         }
-        String rEye = myModel.faceList.get(position).righteye;
+        String rEye = myModel.socailfacelist.get(position).righteye;
         if(rEye.equals("eye1")){
             rightEye.setImageResource(R.drawable.eye1);
         }
@@ -70,7 +72,7 @@ public class pumkinAdapter extends RecyclerView.Adapter<pumkinAdapter.pumkinView
         else if(rEye.equals("eye5")){
             rightEye.setImageResource(R.drawable.eye5);
         }
-        String nosie= myModel.faceList.get(position).nose;
+        String nosie= myModel.socailfacelist.get(position).nose;
         if(nosie.equals("nose1")){
             nose.setImageResource(R.drawable.nose1);
         }
@@ -84,7 +86,7 @@ public class pumkinAdapter extends RecyclerView.Adapter<pumkinAdapter.pumkinView
         }else if(nosie.equals("nose5")){
             nose.setImageResource(R.drawable.nose5);
         }
-        String mouthy= myModel.faceList.get(position).mouth;
+        String mouthy= myModel.socailfacelist.get(position).mouth;
         if(mouthy.equals("mouth1")){
             mouth.setImageResource(R.drawable.mouth1);
         }
@@ -104,6 +106,6 @@ public class pumkinAdapter extends RecyclerView.Adapter<pumkinAdapter.pumkinView
     }
     public int getItemCount() {
       //getting size
-        return myModel.faceList.size();
+        return myModel.socailfacelist.size();
     }
 }

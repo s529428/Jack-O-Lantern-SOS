@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class pumkinPrivateAdaptor extends RecyclerView.Adapter<pumkinAdapter.pumkinViewHolder> {
+public class pumkinPrivateAdaptor extends RecyclerView.Adapter<pumkinPrivateAdaptor.pumkinViewHolder> {
     public static class pumkinViewHolder extends RecyclerView.ViewHolder {
         //creating view holder that will hold the pumkin images
         public pumkinViewHolder(View v) {
@@ -17,17 +17,17 @@ public class pumkinPrivateAdaptor extends RecyclerView.Adapter<pumkinAdapter.pum
     }
     private pumkinfaceModel myModel;
     public pumkinPrivateAdaptor(){
-        myModel= pumkinfaceModel.getpumkinfaceModelSocial(0);
+        myModel= pumkinfaceModel.getpumkinfaceModel();
     }
     @NonNull
     @Override
-    public pumkinAdapter.pumkinViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public pumkinPrivateAdaptor.pumkinViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.pumkin_list_image_view, parent, false);
-        pumkinAdapter.pumkinViewHolder vh = new pumkinAdapter.pumkinViewHolder(v);
+        pumkinPrivateAdaptor.pumkinViewHolder vh = new pumkinPrivateAdaptor.pumkinViewHolder(v);
         return vh;
     }
-    public void onBindViewHolder(@NonNull pumkinAdapter.pumkinViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull pumkinPrivateAdaptor.pumkinViewHolder holder, int position) {
         //finding all the elements of the face
         ImageView leftEye = holder.itemView.findViewById(R.id.leftEyeIV5);
         ImageView rightEye = holder.itemView.findViewById(R.id.rightEyeIV5);

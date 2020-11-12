@@ -29,14 +29,15 @@ public class pumkinfaceModel {
 
     //instance variables and methods
     public ArrayList<faceData> faceList;
-
+    public ArrayList<faceData> socailfacelist;
     //constructor for private gallery
     private pumkinfaceModel(int num) {
-        faceList = new ArrayList<faceData>();
         if(num ==0){
-            privateLoad();
+            faceList = new ArrayList<faceData>();
+           privateLoad();
         }
         if(num ==1){
+            socailfacelist=new ArrayList<faceData>();
             socialLoad();
         }
     }
@@ -55,7 +56,7 @@ public class pumkinfaceModel {
                     for (int i = 0; i < pumkinList.size(); i++) {
                         ParseObject single = pumkinList.get(i);
                         Log.d("table",""+single.getString("RightEye"));
-                        faceList.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
+                        socailfacelist.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
                     }
                 } else {
                     //fail branch
@@ -67,21 +68,17 @@ public class pumkinfaceModel {
     //creating singletons for private and public database
     private static pumkinfaceModel singletonSocial =null;
     private static pumkinfaceModel singletonprivate =null;
-    private static pumkinfaceModel singletonError =null;
 
-    public static pumkinfaceModel getpumkinfaceModelSocial(int num) {
-        if (singletonprivate == null && num == 0) {
-            singletonprivate = new pumkinfaceModel(0);
-        }
-        if (num == 0) {
-            return singletonprivate;
-        }
-        if (singletonSocial == null && num == 1) {
+    public static pumkinfaceModel getpumkinfaceModelSocial() {
+        if (singletonSocial == null) {
             singletonSocial = new pumkinfaceModel(1);
         }
-        if (num == 1) {
-            return singletonSocial;
+        return singletonSocial;
+    }
+    public static pumkinfaceModel getpumkinfaceModel(){
+        if(singletonprivate==null){
+            singletonprivate= new pumkinfaceModel(0);
         }
-        return singletonError;
+        return singletonprivate;
     }
 }
