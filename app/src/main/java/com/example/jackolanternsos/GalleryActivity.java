@@ -21,7 +21,7 @@ private String json;
 private RecyclerView pumkinRV =null;
 private GestureDetectorCompat detector=null;
 private pumkinfaceModel myModel = null;
-private pumkinAdapter pumkinServer =null;
+private pumkinPrivateAdaptor pumkinServer =null;
 private ArrayList<String> pumkinData =null;
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -45,8 +45,8 @@ private ArrayList<String> pumkinData =null;
         setContentView(R.layout.activity_gallery);
         getSupportActionBar().hide();
         //assigning imstance varibles to values
-        myModel= pumkinfaceModel.getpumkinfaceModel();
-        pumkinServer = new pumkinAdapter();
+        myModel= pumkinfaceModel.getpumkinfaceModelSocial(0);
+        pumkinServer = new pumkinPrivateAdaptor();
         // Attach it to the RecyclerView
         pumkinRV = findViewById(R.id.pumkinRV);
         pumkinRV.setAdapter(pumkinServer);

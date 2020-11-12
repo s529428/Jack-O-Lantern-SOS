@@ -22,7 +22,11 @@ import org.json.JSONObject;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements SaveDialogFragment.SaveCallBack {
-
+//creating global varibles to make adding to database easier
+    String lefteyestring= "eye4";
+    String righteyestring ="eye4";
+    String nosestring="nose3";
+    String mouthstring="mouth5";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,22 +99,25 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
             //Randomly select an image from the Eye image options
             String string = "eye"+(random.nextInt(4)+1);
             leftEyeIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
+            lefteyestring=string;
         }
         if(!rightEyeSW.isChecked()){
             //Randomly select an image from the Eye image options
             String string = "eye"+(random.nextInt(4)+1);
             rightEyeIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
+            righteyestring=string;
         }
         if(!noseSW.isChecked()){
             //Randomly select an image from the Nose image options
             String string = "nose"+(random.nextInt(4)+1);
             noseIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
+            nosestring=string;
         }
         if(!mouthSW.isChecked()){
             //Randomly select an image from the Mouth image options
             String string = "mouth"+(random.nextInt(4)+1);
             mouthIV.setImageDrawable(getResources().getDrawable(getResourceID(string, "drawable", getApplicationContext())));
-
+            mouthstring=string;
         }
     }
 
@@ -142,10 +149,10 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         //if public, write to public
         else if(optionIndex == 0) {
             ParseObject pumpkinFace = new ParseObject("PublicPumkinFace");
-            pumpkinFace.put("LeftEye", String.valueOf(leftEyeIV.getDrawable()));
-            pumpkinFace.put("RightEye", String.valueOf(rightEyeIV.getDrawable()));
-            pumpkinFace.put("Nose", String.valueOf(noseIV.getDrawable()));
-            pumpkinFace.put("Mouth", String.valueOf(mouthIV.getDrawable()));
+            pumpkinFace.put("LeftEye", lefteyestring);
+            pumpkinFace.put("RightEye",righteyestring);
+            pumpkinFace.put("Nose", nosestring);
+            pumpkinFace.put("Mouth", mouthstring);
             pumpkinFace.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {

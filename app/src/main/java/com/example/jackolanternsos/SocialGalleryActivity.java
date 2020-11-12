@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class SocialGalleryActivity extends AppCompatActivity {
 
-    private String json;
     private RecyclerView pumkinRV =null;
     private GestureDetectorCompat detector=null;
     private pumkinfaceModel myModel = null;
@@ -44,7 +43,7 @@ public class SocialGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_social_gallery);
         getSupportActionBar().hide();
         //assigning imstance varibles to values
-        myModel= pumkinfaceModel.getpumkinfaceModelSocial();
+        myModel= pumkinfaceModel.getpumkinfaceModelSocial(1);
         pumkinServer = new pumkinAdapter();
         // Attach it to the RecyclerView
         pumkinRV = findViewById(R.id.pumkinRV);
