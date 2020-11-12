@@ -5,7 +5,6 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -37,6 +36,17 @@ public class SocialGalleryActivity extends AppCompatActivity {
             return false;
         }
     }
+
+
+    public void redraw() {
+        //attempting to redraw the recyler view since it does not get data before it starts
+        pumkinRV.swapAdapter(pumkinServer,false);
+        pumkinRV.setLayoutManager(null);
+        final RecyclerView.LayoutManager myManager = new LinearLayoutManager(this);
+        pumkinRV.setLayoutManager(myManager);
+        pumkinServer.notifyDataSetChanged();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +80,15 @@ public class SocialGalleryActivity extends AppCompatActivity {
                 finish();
             }
         });
+        Button redraw= findViewById(R.id.redrawBTN);
+        redraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                redraw();
+            }
+        });
+
+
 
     }
 
