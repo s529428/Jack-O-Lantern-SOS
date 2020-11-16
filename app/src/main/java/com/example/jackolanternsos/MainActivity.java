@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         });
     }
 
-    public void goToGallery(View v) throws InterruptedException {
+    public void goToGallery(View v) {
         if(username == "default"){
             UsernameSaveDialogFragment usernameSaveDialogFragment = new UsernameSaveDialogFragment();
             usernameSaveDialogFragment.show(getSupportFragmentManager(), "Username");
@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         username = newUsername;
         editor.putString("username", username);
         editor.commit();
+        Toast.makeText(getApplicationContext(), "Username set!", Toast.LENGTH_SHORT).show();
         Log.d("return", "This is what it is after a change" + sharedPreferences.getString("username", "default"));
     }
 }
