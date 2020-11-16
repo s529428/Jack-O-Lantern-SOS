@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         }
     }
 
-
     @Override
     public void cancelBTNpressed() {
         Log.d("Dialog", "User changed their mind about saving");
@@ -197,7 +196,4 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         editor.commit();
         Log.d("return", "This is what it is after a change" + sharedPreferences.getString("username", "default"));
     }
-
-    //We need to save info about the user, Let's use SharedPreferences
-
 }

@@ -39,7 +39,7 @@ public class UsernameSaveDialogFragment extends DialogFragment {
         final View view = inflater.inflate(R.layout.dialog_username,null);
         final EditText username = view.findViewById(R.id.username);
         builder.setView(view);
-
+        builder.setTitle("Please Pick a Username");
         builder.setPositiveButton("Set", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
