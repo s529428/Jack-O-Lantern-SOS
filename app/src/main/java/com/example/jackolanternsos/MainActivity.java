@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -76,9 +77,17 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         });
     }
 
-    public void goToGallery(View v){
-        Intent goGallery = new Intent(this, GalleryActivity.class);
-        startActivity(goGallery);
+    public void goToGallery(View v) throws InterruptedException {
+        if(username == "default"){
+            UsernameSaveDialogFragment usernameSaveDialogFragment = new UsernameSaveDialogFragment();
+            usernameSaveDialogFragment.show(getSupportFragmentManager(), "Username");
+            //Delay the activity start
+
+        }else{
+            Intent goGallery = new Intent(this, GalleryActivity.class);
+            startActivity(goGallery);
+        }
+
     }
 
     public void goToPrint(View v){
@@ -168,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
                 @Override
                 public void done(ParseException e) {
                     Log.d("ERROR", ""+e);
+                    Toast.makeText(getApplicationContext(), "Saved!",Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -182,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
                 @Override
                 public void done(ParseException e) {
                     Log.d("ERROR", ""+e);
+                    Toast.makeText(getApplicationContext(), "Saved!",Toast.LENGTH_SHORT).show();
                 }
             });
         }
