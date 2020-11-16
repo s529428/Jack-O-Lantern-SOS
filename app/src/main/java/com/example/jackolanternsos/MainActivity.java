@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,16 +22,25 @@ import org.json.JSONObject;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements SaveDialogFragment.SaveCallBack {
-//creating global varibles to make adding to database easier
-    String lefteyestring= "eye4";
+public class MainActivity extends AppCompatActivity implements SaveDialogFragment.SaveCallBack, UsernameSaveDialogFragment.UsernameSaveDialogListener {
+
+    //Global Variables for storing in DB
+    String lefteyestring = "eye4";
     String righteyestring ="eye4";
-    String nosestring="nose3";
-    String mouthstring="mouth5";
+    String nosestring = "nose3";
+    String mouthstring = "mouth5";
+
+    public String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Set the SharedPreferences up
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username", "default");
+        Log.d("return", sharedPreferences.getString("username", "default"));
 
         //Touch that database baby!
         Parse.initialize(new Parse.Configuration.Builder(this)
@@ -144,7 +154,23 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
         ImageView mouthIV = findViewById(R.id.mouthIV);
         //if private, write to private
         if(optionIndex == 1){
-            //write to the JSON
+            //write to the DB with the User's Saved name
+            if(username == "default"){
+                UsernameSaveDialogFragment usernameSaveDialogFragment = new UsernameSaveDialogFragment();
+                usernameSaveDialogFragment.show(getSupportFragmentManager(), "Username");
+            }
+            ParseObject privatePumpkinFace = new ParseObject("PrivatePumpkinFace");
+            privatePumpkinFace.put("Username", username);
+            privatePumpkinFace.put("LeftEye", lefteyestring);
+            privatePumpkinFace.put("RightEye", righteyestring);
+            privatePumpkinFace.put("Nose", nosestring);
+            privatePumpkinFace.put("Mouth", mouthstring);
+            privatePumpkinFace.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Log.d("ERROR", ""+e);
+                }
+            });
         }
         //if public, write to public
         else if(optionIndex == 0) {
@@ -161,4 +187,17 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
             });
         }
     }
+
+    @Override
+    public void onSetUsername(String newUsername) {
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = getPreferences(0).edit();
+        username = newUsername;
+        editor.putString("username", username);
+        editor.commit();
+        Log.d("return", "This is what it is after a change" + sharedPreferences.getString("username", "default"));
+    }
+
+    //We need to save info about the user, Let's use SharedPreferences
+
 }
