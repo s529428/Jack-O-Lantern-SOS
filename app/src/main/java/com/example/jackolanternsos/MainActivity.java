@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
 
     public String username;
 
+    //String to send username to gallery
+    public final static String KEY_USER = "KEY_USER";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
 
         }else{
             Intent goGallery = new Intent(this, GalleryActivity.class);
+            //include username when going to gallery
+            goGallery.putExtra(KEY_USER,username);
             startActivity(goGallery);
         }
 

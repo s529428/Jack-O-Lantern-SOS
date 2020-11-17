@@ -17,7 +17,7 @@ public class pumkinPrivateAdaptor extends RecyclerView.Adapter<pumkinPrivateAdap
     }
     private pumkinfaceModel myModel;
     public pumkinPrivateAdaptor(){
-        myModel= pumkinfaceModel.getpumkinfaceModel();
+        myModel= pumkinfaceModel.getpumkinfaceModel("");
     }
     @NonNull
     @Override

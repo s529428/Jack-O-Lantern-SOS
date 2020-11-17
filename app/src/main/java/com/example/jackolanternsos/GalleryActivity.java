@@ -16,13 +16,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class GalleryActivity extends AppCompatActivity {
-    //instance variables
+    //instance variables for recycler view
 private String json;
 private RecyclerView pumkinRV =null;
 private GestureDetectorCompat detector=null;
 private pumkinfaceModel myModel = null;
 private pumkinPrivateAdaptor pumkinServer =null;
 private ArrayList<String> pumkinData =null;
+//creating varaible to hold the username of the user
+private String username;
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
         public boolean onSingleTapConfirmed(MotionEvent e) {
@@ -44,8 +46,11 @@ private ArrayList<String> pumkinData =null;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         getSupportActionBar().hide();
+        //pulling the username from the intent
+        username=getIntent().getStringExtra(MainActivity.KEY_USER);
+        //setting up recycler view
         //assigning imstance varibles to values
-        myModel= pumkinfaceModel.getpumkinfaceModel();
+        myModel= pumkinfaceModel.getpumkinfaceModel(username);
         pumkinServer = new pumkinPrivateAdaptor();
         // Attach it to the RecyclerView
         pumkinRV = findViewById(R.id.pumkinRV);
@@ -64,6 +69,7 @@ private ArrayList<String> pumkinData =null;
                                                      return detector.onTouchEvent(e);
                                                  }
                                              });
+        //adding a button handler incase generate is pressed
         Button generateBTN= findViewById(R.id.GenerateBTN);
         generateBTN.setOnClickListener(new View.OnClickListener() {
             @Override
