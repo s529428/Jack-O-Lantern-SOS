@@ -45,8 +45,8 @@ public class pumkinfaceModel {
         //pulling in private faces
         Log.d("username",username);
         //pulling private faces
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("PrivatePumkinFace");
-        query.whereEqualTo("Username","Lindsay");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("PrivatePumpkinFace");
+        query.whereEqualTo("Username",username);
         query.findInBackground(new FindCallback<ParseObject>() {
             //pulling all the faces from the public table
             public void done(List<ParseObject> pumkinList, ParseException e) {
@@ -56,8 +56,6 @@ public class pumkinfaceModel {
                     Log.d("username",""+pumkinList.size());
                     for (int i = 0; i < pumkinList.size(); i++) {
                         ParseObject single = pumkinList.get(i);
-                        Log.d("username",""+single);
-                        Log.d("table",""+single.getString("RightEye"));
                         faceList.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
                     }
                 } else {
@@ -66,28 +64,6 @@ public class pumkinfaceModel {
                 }
             }
         });
-        //pulling public faces
-        ParseQuery<ParseObject> query2 = ParseQuery.getQuery("PublicPumkinFace");
-        query2.whereEqualTo("Username",username);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            //pulling all the faces from the public table
-            public void done(List<ParseObject> pumkinList, ParseException e) {
-                if (e == null) {
-                    //sucess branch
-                    String result = "";
-                    Log.d("username",""+pumkinList.size());
-                    for (int i = 0; i < pumkinList.size(); i++) {
-                        ParseObject single = pumkinList.get(i);
-                        Log.d("table",""+single.getString("RightEye"));
-                        faceList.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
-                    }
-                } else {
-                    //fail branch
-                    Log.d("face", "ERROR; " + e.getMessage());
-                }
-            }
-        });
-        
     }
     private void socialLoad() {
         //pulling in public stored faces

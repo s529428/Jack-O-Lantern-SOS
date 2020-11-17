@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -78,7 +79,13 @@ private String username;
                 finish();
             }
         });
-
+        Button redraw= findViewById(R.id.resetBTN);
+        redraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                redraw();
+            }
+        });
     }
     public void dialogOption(){
         //Give the user the option btwn print edit and cancel.
@@ -87,5 +94,21 @@ private String username;
 
     //RECYCLER VIEW
     //LIKE INSTAGRAM
-
+    public void redraw() {
+        //attempting to redraw the recyler view since it does not get data before it starts
+        pumkinRV.swapAdapter(pumkinServer,false);
+        pumkinRV.setLayoutManager(null);
+        final RecyclerView.LayoutManager myManager = new LinearLayoutManager(this);
+        pumkinRV.setLayoutManager(myManager);
+        pumkinServer.notifyDataSetChanged();
+        //letting the user know if the query came up empty
+        TextView errorTV = findViewById(R.id.errorTV);
+        if(pumkinServer.getItemCount()==0){
+            errorTV.setTextColor(Color.RED);
+            errorTV.setText("There are no faces associated with your username or an error has occured");
+        }
+        else{
+            errorTV.setText("");
+        }
+    }
 }

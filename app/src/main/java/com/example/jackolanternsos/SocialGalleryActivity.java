@@ -5,11 +5,13 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,14 @@ public class SocialGalleryActivity extends AppCompatActivity {
         final RecyclerView.LayoutManager myManager = new LinearLayoutManager(this);
         pumkinRV.setLayoutManager(myManager);
         pumkinServer.notifyDataSetChanged();
+        TextView errortv = findViewById(R.id.errortv);
+        if(pumkinServer.getItemCount()==0){
+            errortv.setTextColor(Color.RED);
+            errortv.setText("An error has occured");
+        }
+        else{
+            errortv.setText("");
+        }
     }
 
     @Override
