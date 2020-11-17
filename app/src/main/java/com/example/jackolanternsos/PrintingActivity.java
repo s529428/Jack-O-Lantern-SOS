@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class PrintingActivity extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class PrintingActivity extends AppCompatActivity {
         ImageView printIV = findViewById(R.id.printIV);
         final Button printBTN = findViewById(R.id.printBTN);
 
-        //Take out and replace with printPreview() once we can save photos from main
+        //Take out and replace with printPreview() once we get JSON stuff figured out
                 printIV.setImageResource(R.drawable.eye1);
 
         printBTN.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +43,7 @@ public class PrintingActivity extends AppCompatActivity {
                 }
                 catch (Exception e) {
                     //Toast message for failure or empty values
+                    Toast.makeText(PrintingActivity.this, "Height/Width input is invalid or blank. Try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -54,7 +56,7 @@ public class PrintingActivity extends AppCompatActivity {
     public void printPreview(){
         //grab the face and put in the preview box
         ImageView printIV = findViewById(R.id.printIV);
-        //Fix
+        //Fix when we get JSON stuff figured out
                 //printIV.setImageResource(R.drawable.*insert wanted photo name*);
     }
     public void printFace(int height, int width) {
