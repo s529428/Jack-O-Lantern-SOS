@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B65232"
     tools:context=".PrintingActivity">
 
     <Button
@@ -15,6 +16,8 @@
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="63dp"
         android:text="Print"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelBTN"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +34,8 @@
         android:layout_marginBottom="63dp"
         android:onClick="goToHome"
         android:text="Cancel"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
