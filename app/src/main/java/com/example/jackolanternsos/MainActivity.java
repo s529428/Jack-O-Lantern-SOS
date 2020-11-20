@@ -100,9 +100,16 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
     }
 
     public void goToSocialGallery(View v){
-        Intent goSocialGallery = new Intent(this, SocialGalleryActivity.class);
-        goSocialGallery.putExtra(KEY_USER,username);
-        startActivity(goSocialGallery);
+        if(username == "default"){
+            UsernameSaveDialogFragment usernameSaveDialogFragment = new UsernameSaveDialogFragment();
+            usernameSaveDialogFragment.show(getSupportFragmentManager(), "Username");
+            //Delay the activity start
+
+        }else{
+            Intent goSocialGallery = new Intent(this, SocialGalleryActivity.class);
+            goSocialGallery.putExtra(KEY_USER,username);
+            startActivity(goSocialGallery);
+        }
     }
 
 
