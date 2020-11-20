@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
                 .build()
         );
 
+        rerollFace();
+
         //Let's check that it touched lol
         //ParseInstallation.getCurrentInstallation().saveInBackground();
 
@@ -96,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
 
     public void goToPrint(View v){
         Intent goPrint = new Intent(this, PrintingActivity.class);
+        goPrint.putExtra("RIGHT_EYE", righteyestring);
+        goPrint.putExtra("LEFT_EYE", lefteyestring);
+        goPrint.putExtra("NOSE", nosestring);
+        goPrint.putExtra("MOUTH", mouthstring);
         startActivity(goPrint);
     }
 
