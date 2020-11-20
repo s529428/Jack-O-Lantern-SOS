@@ -11,4 +11,20 @@
         <item>@string/saveOption1</item>
         <item>@string/saveOption2</item>
     </string-array>
+
+    <string name="privateGalleryOption1">Print</string>
+    <string name="privateGalleryOption2">Cancel</string>
+    <string-array name="privateGalleryOptions">
+        <item>@string/privateGalleryOption1</item>
+        <item>@string/privateGalleryOption2</item>
+    </string-array>
+
+    <string name="publicGalleryOption1">Print</string>
+    <string name="publicGalleryOption2">Save</string>
+    <string name="publicGalleryOption3">Cancel</string>
+    <string-array name="publicGalleryOptions">
+        <item>@string/publicGalleryOption1</item>
+        <item>@string/publicGalleryOption2</item>
+        <item>@string/publicGalleryOption3</item>
+    </string-array>
 </resources>

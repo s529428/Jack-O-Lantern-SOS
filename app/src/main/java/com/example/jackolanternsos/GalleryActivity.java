@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity implements PrivateGalleryDialogFragment.PrivateGalleryDialogListener {
     //instance variables for recycler view
 private String json;
 private RecyclerView pumkinRV =null;
@@ -27,7 +28,20 @@ private ArrayList<String> pumkinData =null;
 //creating varaible to hold the username of the user
 private String username;
 
+    @Override
+    public void goPrintPumpkin() {
+        //Grab the face from facelist at position
+        //Send user to the Print activity with that face data
+        Intent goPrint = new Intent(this, PrintingActivity.class);
+        goPrint.putExtra("LEFT_EYE", 1);
+        goPrint.putExtra("RIGHT_EYE", 1);
+        goPrint.putExtra("NOSE", 1);
+        goPrint.putExtra("MOUTH", 1);
+        startActivity(goPrint);
+    }
+
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+
         public boolean onSingleTapConfirmed(MotionEvent e) {
             View view = pumkinRV.findChildViewUnder(e.getX(), e.getY());
             if (view != null) {
@@ -35,13 +49,15 @@ private String username;
                 RecyclerView.ViewHolder holder = pumkinRV.getChildViewHolder(view);
                 if (holder instanceof pumkinPrivateAdaptor.pumkinViewHolder) {
                     int position = holder.getAdapterPosition();
-                    dialogOption();
+                    PrivateGalleryDialogFragment privateGalleryDialogFragment = new PrivateGalleryDialogFragment();
+                    privateGalleryDialogFragment.show(getSupportFragmentManager(), "Face Options");
                     return true;
                 }
             }
             return false;
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,10 +102,6 @@ private String username;
                 redraw();
             }
         });
-    }
-    public void dialogOption(){
-        //Give the user the option btwn print edit and cancel.
-        //Dialog box
     }
 
     //RECYCLER VIEW

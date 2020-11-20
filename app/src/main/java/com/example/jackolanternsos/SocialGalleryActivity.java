@@ -5,6 +5,7 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -12,16 +13,34 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class SocialGalleryActivity extends AppCompatActivity {
+public class SocialGalleryActivity extends AppCompatActivity implements PublicGalleryDialogFragment.PublicGalleryDialogListener{
 
     private RecyclerView pumkinRV =null;
     private GestureDetectorCompat detector=null;
     private pumkinfaceModel myModel = null;
     private pumkinAdapter pumkinServer =null;
     private ArrayList<String> pumkinData =null;
+
+    @Override
+    public void goPrintPumpkin() {
+        Intent goPrint = new Intent(this, PrintingActivity.class);
+        goPrint.putExtra("LEFT_EYE", 1);
+        goPrint.putExtra("RIGHT_EYE", 1);
+        goPrint.putExtra("NOSE", 1);
+        goPrint.putExtra("MOUTH", 1);
+        startActivity(goPrint);
+
+    }
+
+    @Override
+    public void goSavePumpkin() {
+        //Save the face to the local
+        Toast.makeText(getApplicationContext(),"Saved to your gallery!", Toast.LENGTH_SHORT).show();
+    }
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
         public boolean onSingleTapConfirmed(MotionEvent e) {
@@ -31,7 +50,8 @@ public class SocialGalleryActivity extends AppCompatActivity {
                 RecyclerView.ViewHolder holder = pumkinRV.getChildViewHolder(view);
                 if (holder instanceof pumkinAdapter.pumkinViewHolder) {
                     int position = holder.getAdapterPosition();
-                    dialogOption();
+                    PublicGalleryDialogFragment publicGalleryDialogFragment = new PublicGalleryDialogFragment();
+                    publicGalleryDialogFragment.show(getSupportFragmentManager(), "Face Options");
                     return true;
                 }
             }
@@ -105,15 +125,6 @@ public class SocialGalleryActivity extends AppCompatActivity {
 
     //RECYCLER VIEW
     //LIKE INSTAGRAM
-
-    public void dialogOption(){
-        //Give the user the option btwn print edit and cancel.
-        //Dialog box
-    }
-
-    public void pullFace(){
-        //Save selected face to local gallery
-    }
 
     //RECYCLER VIEW
     //LIKE INSTAGRAM
