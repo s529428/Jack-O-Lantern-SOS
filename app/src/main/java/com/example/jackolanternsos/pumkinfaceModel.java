@@ -30,6 +30,8 @@ public class pumkinfaceModel {
     //instance variables and methods
     public ArrayList<faceData> faceList;
     public ArrayList<faceData> socailfacelist;
+    public pumkinPrivateAdaptor privateAdaptor =null;
+    public pumkinAdapter pumkinAdapter =null;
     //constructor for private gallery
     private pumkinfaceModel(int num, String username) {
         if(num ==0){
@@ -58,6 +60,9 @@ public class pumkinfaceModel {
                         ParseObject single = pumkinList.get(i);
                         faceList.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
                     }
+                    if(privateAdaptor!=null){
+                        privateAdaptor.notifyDataSetChanged();
+                    }
                 } else {
                     //fail branch
                     Log.d("face", "ERROR; " + e.getMessage());
@@ -79,6 +84,9 @@ public class pumkinfaceModel {
                         Log.d("table",""+single.getString("RightEye"));
                         socailfacelist.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
                     }
+                    if(pumkinAdapter!=null){
+                        pumkinAdapter.notifyDataSetChanged();
+                    }
                 } else {
                     //fail branch
                     Log.d("face", "ERROR; " + e.getMessage());
@@ -88,7 +96,7 @@ public class pumkinfaceModel {
     }
     //creating singletons for private and public database
     private static pumkinfaceModel singletonSocial =null;
-    private static pumkinfaceModel singletonprivate =null;
+    public static pumkinfaceModel singletonprivate =null;
 
     public static pumkinfaceModel getpumkinfaceModelSocial() {
         if (singletonSocial == null) {

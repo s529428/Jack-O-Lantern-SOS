@@ -88,7 +88,7 @@ public class pumkinPrivateAdaptor extends RecyclerView.Adapter<pumkinPrivateAdap
         else if(mouthy.equals("mouth2")){
             mouth.setImageResource(R.drawable.mouth2);
         }
-        else if(mouthy.equals("3")){
+        else if(mouthy.equals("mouth3")){
             mouth.setImageResource(R.drawable.mouth3);
         }
         else if(mouthy.equals("mouth4")){

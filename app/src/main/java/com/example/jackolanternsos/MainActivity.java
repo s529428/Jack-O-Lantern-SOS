@@ -194,10 +194,18 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
             privatePumpkinFace.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
-                    Log.d("ERROR", ""+e);
-                    Toast.makeText(getApplicationContext(), "Saved!",Toast.LENGTH_SHORT).show();
+                    Log.d("ERROR", "" + e);
+                    Toast.makeText(getApplicationContext(), "Saved!", Toast.LENGTH_SHORT).show();
+                    //if add was sucessful adding to face list array to be show in recycler view
+                    if (e == null) {
+                        //add to face list
+                       pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(righteyestring, lefteyestring, nosestring, mouthstring));
+                        //notify server
+                        pumkinfaceModel.getpumkinfaceModel(username).privateAdaptor.notifyDataSetChanged();
+                    }
                 }
             });
+
         }
         //if public, write to public
         else if(optionIndex == 0) {

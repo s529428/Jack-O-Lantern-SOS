@@ -45,19 +45,31 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
     @Override
     public void goSavePumpkin(int position) {
         //Save the face to the local
+        //save to database
         ParseObject privatePumkinFace = new ParseObject("PrivatePumpkinFace");
         privatePumkinFace.put("Username", username);
-        privatePumkinFace.put("LeftEye", myModel.socailfacelist.get(position).lefteye);
+        privatePumkinFace.put("LeftEye",  myModel.socailfacelist.get(position).lefteye);
         privatePumkinFace.put("RightEye", myModel.socailfacelist.get(position).righteye);
         privatePumkinFace.put("Nose", myModel.socailfacelist.get(position).nose);
-        privatePumkinFace.put("Mouth", myModel.socailfacelist.get(position).mouth);
+        privatePumkinFace.put("Mouth",myModel.socailfacelist.get(position).mouth);
+        final int hold = position;
         privatePumkinFace.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 Log.d("ERROR", ""+e);
                 Toast.makeText(getApplicationContext(),"Saved to your gallery!", Toast.LENGTH_SHORT).show();
+                if (e == null) {
+                    //if the facelist exists added to the list otherwise when the list is created the element will be added
+                    if(pumkinfaceModel.singletonprivate != null) {
+                        //add to face list
+                        pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(myModel.socailfacelist.get(hold).righteye, myModel.socailfacelist.get(hold).lefteye, myModel.socailfacelist.get(hold).nose, myModel.socailfacelist.get(hold).mouth));
+                        //notify server
+                        pumkinfaceModel.getpumkinfaceModel(username).privateAdaptor.notifyDataSetChanged();
+                    }
+                }
             }
         });
+
     }
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -82,6 +94,9 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
 
 
     public void redraw() {
+        //requerying the database for updates
+        //myModel.singletonSocial=null;
+        //myModel= pumkinfaceModel.getpumkinfaceModelSocial();
         //attempting to redraw the recyler view since it does not get data before it starts
         pumkinRV.swapAdapter(pumkinServer,false);
         pumkinRV.setLayoutManager(null);
@@ -110,9 +125,11 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
         // Attach it to the RecyclerView
         pumkinRV = findViewById(R.id.pumkinRV);
         pumkinRV.setAdapter(pumkinServer);
+        myModel.pumkinAdapter=pumkinServer;
         // Make and attach a layoutmanager
         final RecyclerView.LayoutManager myManager = new LinearLayoutManager(this);
         pumkinRV.setLayoutManager(myManager);
+        pumkinServer.notifyDataSetChanged();
         // Make a Listener for taps
         detector = new GestureDetectorCompat(this,
                 new SocialGalleryActivity.RecyclerViewOnGestureListener());

@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,6 @@ private pumkinPrivateAdaptor pumkinServer =null;
 private ArrayList<String> pumkinData =null;
 //creating varaible to hold the username of the user
 private String username;
-
 
 
     @Override
@@ -78,9 +78,11 @@ private String username;
         // Attach it to the RecyclerView
         pumkinRV = findViewById(R.id.pumkinRV);
         pumkinRV.setAdapter(pumkinServer);
+        myModel.privateAdaptor=pumkinServer;
         // Make and attach a layoutmanager
         final RecyclerView.LayoutManager myManager = new LinearLayoutManager(this);
         pumkinRV.setLayoutManager(myManager);
+        pumkinServer.notifyDataSetChanged();
         // Make a Listener for taps
         detector = new GestureDetectorCompat(this,
                 new RecyclerViewOnGestureListener());
@@ -101,32 +103,14 @@ private String username;
                 finish();
             }
         });
-        Button redraw= findViewById(R.id.resetBTN);
-        redraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                redraw();
-            }
-        });
-    }
+        //if there is no images by the user letting them know
+        if(pumkinServer.getItemCount()==0){
+            Toast.makeText(getApplicationContext(), "\"There are no faces associated with your username or an error has occured\"",Toast.LENGTH_LONG).show();
+        }
 
+    }
     //RECYCLER VIEW
     //LIKE INSTAGRAM
-    public void redraw() {
-        //attempting to redraw the recyler view since it does not get data before it starts
-        pumkinRV.swapAdapter(pumkinServer,false);
-        pumkinRV.setLayoutManager(null);
-        final RecyclerView.LayoutManager myManager = new LinearLayoutManager(this);
-        pumkinRV.setLayoutManager(myManager);
-        pumkinServer.notifyDataSetChanged();
-        //letting the user know if the query came up empty
-        TextView errorTV = findViewById(R.id.errorTV);
-        if(pumkinServer.getItemCount()==0){
-            errorTV.setTextColor(Color.RED);
-            errorTV.setText("There are no faces associated with your username or an error has occured");
-        }
-        else{
-            errorTV.setText("");
-        }
-    }
+
+
 }
