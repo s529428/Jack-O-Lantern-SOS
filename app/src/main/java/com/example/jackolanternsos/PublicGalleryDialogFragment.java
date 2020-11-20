@@ -14,8 +14,8 @@ public class PublicGalleryDialogFragment extends DialogFragment {
 
     public interface PublicGalleryDialogListener {
         //Methods to send the user to where they want to go
-        void goPrintPumpkin();
-        void goSavePumpkin();
+        void goPrintPumpkin(int position);
+        void goSavePumpkin(int position);
 
     }
 
@@ -31,6 +31,7 @@ public class PublicGalleryDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final int position = getArguments().getInt("POSITION");
         //Create the Builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         //Add the options to the dialog
@@ -39,10 +40,10 @@ public class PublicGalleryDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(i==0){
-                    activity.goPrintPumpkin();
+                    activity.goPrintPumpkin(position);
                 }
                 else if(i==1){
-                    activity.goSavePumpkin();
+                    activity.goSavePumpkin(position);
                 }else{
                     PublicGalleryDialogFragment.this.getDialog().cancel();
                 }

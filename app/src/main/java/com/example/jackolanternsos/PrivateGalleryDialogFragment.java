@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,7 @@ public class PrivateGalleryDialogFragment extends DialogFragment {
 
     public interface PrivateGalleryDialogListener {
         //Methods to send the user to where they want to go
-        public void goPrintPumpkin();
+        void goPrintPumpkin(int position);
 
     }
 
@@ -31,6 +32,8 @@ public class PrivateGalleryDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final int position = getArguments().getInt("POSITION");
+        Log.d("BUNDLE", ""+ position);
         //Create the Builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         //Add the options to the dialog
@@ -39,7 +42,7 @@ public class PrivateGalleryDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                     if(i==0){
-                        activity.goPrintPumpkin();
+                        activity.goPrintPumpkin(position);
                     }else{
                         PrivateGalleryDialogFragment.this.getDialog().cancel();
                     }

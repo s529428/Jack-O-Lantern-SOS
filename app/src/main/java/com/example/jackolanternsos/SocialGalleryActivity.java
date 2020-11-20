@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 
@@ -24,22 +29,35 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
     private pumkinfaceModel myModel = null;
     private pumkinAdapter pumkinServer =null;
     private ArrayList<String> pumkinData =null;
+    private String username;
 
     @Override
-    public void goPrintPumpkin() {
+    public void goPrintPumpkin(int position) {
         Intent goPrint = new Intent(this, PrintingActivity.class);
-        goPrint.putExtra("LEFT_EYE", 1);
-        goPrint.putExtra("RIGHT_EYE", 1);
-        goPrint.putExtra("NOSE", 1);
-        goPrint.putExtra("MOUTH", 1);
+        goPrint.putExtra("RIGHT_EYE", myModel.socailfacelist.get(position).righteye);
+        goPrint.putExtra("LEFT_EYE", myModel.socailfacelist.get(position).lefteye);
+        goPrint.putExtra("NOSE", myModel.socailfacelist.get(position).nose);
+        goPrint.putExtra("MOUTH", myModel.socailfacelist.get(position).mouth);
         startActivity(goPrint);
 
     }
 
     @Override
-    public void goSavePumpkin() {
+    public void goSavePumpkin(int position) {
         //Save the face to the local
-        Toast.makeText(getApplicationContext(),"Saved to your gallery!", Toast.LENGTH_SHORT).show();
+        ParseObject privatePumkinFace = new ParseObject("PrivatePumpkinFace");
+        privatePumkinFace.put("Username", username);
+        privatePumkinFace.put("LeftEye", myModel.socailfacelist.get(position).lefteye);
+        privatePumkinFace.put("RightEye", myModel.socailfacelist.get(position).righteye);
+        privatePumkinFace.put("Nose", myModel.socailfacelist.get(position).nose);
+        privatePumkinFace.put("Mouth", myModel.socailfacelist.get(position).mouth);
+        privatePumkinFace.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                Log.d("ERROR", ""+e);
+                Toast.makeText(getApplicationContext(),"Saved to your gallery!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -50,7 +68,10 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
                 RecyclerView.ViewHolder holder = pumkinRV.getChildViewHolder(view);
                 if (holder instanceof pumkinAdapter.pumkinViewHolder) {
                     int position = holder.getAdapterPosition();
+                    Bundle args = new Bundle();
+                    args.putInt("POSITION", position);
                     PublicGalleryDialogFragment publicGalleryDialogFragment = new PublicGalleryDialogFragment();
+                    publicGalleryDialogFragment.setArguments(args);
                     publicGalleryDialogFragment.show(getSupportFragmentManager(), "Face Options");
                     return true;
                 }
@@ -82,6 +103,7 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social_gallery);
         getSupportActionBar().hide();
+        username = getIntent().getStringExtra(MainActivity.KEY_USER);
         //assigning imstance varibles to values
         myModel= pumkinfaceModel.getpumkinfaceModelSocial();
         pumkinServer = new pumkinAdapter();

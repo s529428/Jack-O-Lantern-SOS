@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -28,15 +29,17 @@ private ArrayList<String> pumkinData =null;
 //creating varaible to hold the username of the user
 private String username;
 
+
+
     @Override
-    public void goPrintPumpkin() {
+    public void goPrintPumpkin(int position) {
         //Grab the face from facelist at position
         //Send user to the Print activity with that face data
         Intent goPrint = new Intent(this, PrintingActivity.class);
-        goPrint.putExtra("LEFT_EYE", 1);
-        goPrint.putExtra("RIGHT_EYE", 1);
-        goPrint.putExtra("NOSE", 1);
-        goPrint.putExtra("MOUTH", 1);
+        goPrint.putExtra("RIGHT_EYE", myModel.faceList.get(position).righteye);
+        goPrint.putExtra("LEFT_EYE", myModel.faceList.get(position).lefteye);
+        goPrint.putExtra("NOSE", myModel.faceList.get(position).nose);
+        goPrint.putExtra("MOUTH", myModel.faceList.get(position).mouth);
         startActivity(goPrint);
     }
 
@@ -49,7 +52,10 @@ private String username;
                 RecyclerView.ViewHolder holder = pumkinRV.getChildViewHolder(view);
                 if (holder instanceof pumkinPrivateAdaptor.pumkinViewHolder) {
                     int position = holder.getAdapterPosition();
+                    Bundle args = new Bundle();
+                    args.putInt("POSITION", position);
                     PrivateGalleryDialogFragment privateGalleryDialogFragment = new PrivateGalleryDialogFragment();
+                    privateGalleryDialogFragment.setArguments(args);
                     privateGalleryDialogFragment.show(getSupportFragmentManager(), "Face Options");
                     return true;
                 }
