@@ -103,10 +103,6 @@ private String username;
                 finish();
             }
         });
-        //if there is no images by the user letting them know
-        if(pumkinServer.getItemCount()==0){
-            Toast.makeText(getApplicationContext(), "\"There are no faces associated with your username or an error has occured\"",Toast.LENGTH_LONG).show();
-        }
 
     }
     //RECYCLER VIEW

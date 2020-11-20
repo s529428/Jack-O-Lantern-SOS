@@ -94,23 +94,17 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
 
 
     public void redraw() {
-        //requerying the database for updates
-        //myModel.singletonSocial=null;
-        //myModel= pumkinfaceModel.getpumkinfaceModelSocial();
-        //attempting to redraw the recyler view since it does not get data before it starts
-        pumkinRV.swapAdapter(pumkinServer,false);
-        pumkinRV.setLayoutManager(null);
+        pumkinfaceModel.singletonSocial=null;
+        myModel= pumkinfaceModel.getpumkinfaceModelSocial();
+        pumkinServer = new pumkinAdapter();
+        // Attach it to the RecyclerView
+        pumkinRV = findViewById(R.id.pumkinRV);
+        pumkinRV.setAdapter(pumkinServer);
+        myModel.pumkinAdapter=pumkinServer;
         final RecyclerView.LayoutManager myManager = new LinearLayoutManager(this);
         pumkinRV.setLayoutManager(myManager);
         pumkinServer.notifyDataSetChanged();
-        TextView errortv = findViewById(R.id.errortv);
-        if(pumkinServer.getItemCount()==0){
-            errortv.setTextColor(Color.RED);
-            errortv.setText("An error has occured");
-        }
-        else{
-            errortv.setText("");
-        }
+
     }
 
     @Override
@@ -156,9 +150,6 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
                 redraw();
             }
         });
-
-
-
     }
 
 

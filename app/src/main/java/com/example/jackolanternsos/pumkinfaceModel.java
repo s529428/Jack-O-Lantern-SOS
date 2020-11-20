@@ -95,7 +95,7 @@ public class pumkinfaceModel {
         });
     }
     //creating singletons for private and public database
-    private static pumkinfaceModel singletonSocial =null;
+    public static pumkinfaceModel singletonSocial =null;
     public static pumkinfaceModel singletonprivate =null;
 
     public static pumkinfaceModel getpumkinfaceModelSocial() {

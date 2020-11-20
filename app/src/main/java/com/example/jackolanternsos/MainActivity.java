@@ -174,10 +174,6 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
 
     @Override
     public void selectedOption(int optionIndex) {
-        ImageView leftEyeIV = findViewById(R.id.leftEyeIV);
-        ImageView rightEyeIV = findViewById(R.id.rightEyeIV);
-        ImageView noseIV = findViewById(R.id.noseIV);
-        ImageView mouthIV = findViewById(R.id.mouthIV);
         //if private, write to private
         if(optionIndex == 1){
             //write to the DB with the User's Saved name
@@ -199,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
                     //if add was sucessful adding to face list array to be show in recycler view
                     if (e == null) {
                         //add to face list
-                       pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(righteyestring, lefteyestring, nosestring, mouthstring));
+                        pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(righteyestring, lefteyestring, nosestring, mouthstring));
                         //notify server
                         pumkinfaceModel.getpumkinfaceModel(username).privateAdaptor.notifyDataSetChanged();
                     }
