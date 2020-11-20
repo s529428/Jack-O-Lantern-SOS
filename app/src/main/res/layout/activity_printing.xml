@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="63dp"
         android:background="#000000"
@@ -28,7 +27,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="90dp"
         android:layout_marginBottom="63dp"
         android:background="#000000"
@@ -47,9 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Please enter your pumpkins height and width"
+        android:text="Please enter your pumpkin's height and width"
         android:textColor="#000000"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +61,7 @@
         android:layout_marginTop="45dp"
         android:text="Height"
         android:textColor="#000000"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/helpTV" />
 
@@ -75,7 +73,7 @@
         android:layout_marginTop="45dp"
         android:text="Width"
         android:textColor="#000000"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heightTV" />
 
@@ -102,9 +100,9 @@
 
     <ImageView
         android:id="@+id/printIV"
-        android:layout_width="313dp"
-        android:layout_height="273dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/printBTN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/widthET"

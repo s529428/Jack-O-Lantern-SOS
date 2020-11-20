@@ -1,14 +1,17 @@
 package com.example.jackolanternsos;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.print.PrintHelper;
-
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,11 +28,9 @@ public class PrintingActivity extends AppCompatActivity {
 
         final EditText heightET = findViewById(R.id.heightET);
         final EditText widthET = findViewById(R.id.widthET);
-        ImageView printIV = findViewById(R.id.printIV);
         final Button printBTN = findViewById(R.id.printBTN);
 
-        //Take out and replace with printPreview() once we get JSON stuff figured out
-                printIV.setImageResource(R.drawable.eye1);
+        printPreview();
 
         printBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,16 +57,43 @@ public class PrintingActivity extends AppCompatActivity {
     public void printPreview(){
         //grab the face and put in the preview box
         ImageView printIV = findViewById(R.id.printIV);
-        //Fix when we get JSON stuff figured out
-                //printIV.setImageResource(R.drawable.*insert wanted photo name*);
+
+        Drawable leye = ContextCompat.getDrawable(this, R.drawable.eye1);
+        Drawable reye = ContextCompat.getDrawable(this, R.drawable.eye2);
+        Drawable nose = ContextCompat.getDrawable(this, R.drawable.nose2);
+        Drawable mouth = ContextCompat.getDrawable(this, R.drawable.mouth5);
+        //Place holder image to keep ImageView max size (Scaling won't work without it)
+            Drawable ph = ContextCompat.getDrawable(this, R.drawable.eye3);
+            ph.mutate();
+            ph.setAlpha(0);
+
+        LayerDrawable finalDrawable = new LayerDrawable(new Drawable[] {leye, reye, nose, mouth, ph});
+        leye.mutate();
+        reye.mutate();
+        nose.mutate();
+        mouth.mutate();
+        //Scales face elements to fit ImageView
+        finalDrawable.setLayerHeight(0, leye.getIntrinsicHeight()/3);
+        finalDrawable.setLayerHeight(1, reye.getIntrinsicHeight()/3);
+        finalDrawable.setLayerHeight(2, nose.getIntrinsicHeight()/3);
+        finalDrawable.setLayerHeight(3, mouth.getIntrinsicHeight()/2);
+        finalDrawable.setLayerWidth(0, leye.getIntrinsicWidth()/3);
+        finalDrawable.setLayerWidth(1, reye.getIntrinsicWidth()/3);
+        finalDrawable.setLayerWidth(2, nose.getIntrinsicWidth()/3);
+        finalDrawable.setLayerWidth(3, mouth.getIntrinsicWidth()/2);
+        //Places face elements in correct spots
+        finalDrawable.setLayerGravity(0, Gravity.LEFT | Gravity.TOP);
+        finalDrawable.setLayerGravity(1, Gravity.RIGHT | Gravity.TOP);
+        finalDrawable.setLayerGravity(2, Gravity.CENTER);
+        finalDrawable.setLayerGravity(3, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+
+        printIV.setImageDrawable(finalDrawable);
     }
+
     public void printFace(int height, int width) {
-        ImageView printIV = findViewById(R.id.printIV);
-        //Start the printing process with a scaled image based on the height and width
         PrintHelper photoPrinter = new PrintHelper(PrintingActivity.this);
-        //Change this to use height and width eventually
-        //photoPrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-        Bitmap image = Bitmap.createScaledBitmap(((BitmapDrawable) printIV.getDrawable()).getBitmap(), height, width, false);
-        photoPrinter.printBitmap("eye1.png - test print", image);
+        
+        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.eye1);
+        photoPrinter.printBitmap("test print", image);
     }
 }
