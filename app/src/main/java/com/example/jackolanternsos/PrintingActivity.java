@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 public class PrintingActivity extends AppCompatActivity {
 
+    //Public initialization to help with grabbing values from intents and using in other functions
     public String rightEye;
     public String leftEye;
     public String theNose;
@@ -35,6 +36,7 @@ public class PrintingActivity extends AppCompatActivity {
         final EditText widthET = findViewById(R.id.widthET);
         final Button printBTN = findViewById(R.id.printBTN);
 
+        //Grabs values for face from other activities
         Intent ini = getIntent();
         rightEye = ini.getStringExtra("RIGHT_EYE");
         leftEye = ini.getStringExtra("LEFT_EYE");
@@ -42,6 +44,7 @@ public class PrintingActivity extends AppCompatActivity {
         theMouth = ini.getStringExtra("MOUTH");
         printPreview();
 
+        //Checks for correct values in ET's and starts print
         printBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,12 +70,13 @@ public class PrintingActivity extends AppCompatActivity {
     public void printPreview(){
         //grab the face and put in the preview box
         ImageView printIV = findViewById(R.id.printIV);
+        //Initialization for face elements
+        Drawable leye;
+        Drawable reye;
+        Drawable nose;
+        Drawable mouth;
 
-        Drawable leye = ContextCompat.getDrawable(this, R.drawable.eye1);
-        Drawable reye = ContextCompat.getDrawable(this, R.drawable.eye2);
-        Drawable nose = ContextCompat.getDrawable(this, R.drawable.nose2);
-        Drawable mouth = ContextCompat.getDrawable(this, R.drawable.mouth5);
-
+        //Switch statements to set face elements to correct ones based off other activities
         switch(leftEye) {
             case "eye1":
                 leye = ContextCompat.getDrawable(this, R.drawable.eye1);
