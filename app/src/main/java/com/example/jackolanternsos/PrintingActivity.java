@@ -20,6 +20,11 @@ import android.widget.Toast;
 
 public class PrintingActivity extends AppCompatActivity {
 
+    public String rightEye;
+    public String leftEye;
+    public String theNose;
+    public String theMouth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,11 @@ public class PrintingActivity extends AppCompatActivity {
         final EditText widthET = findViewById(R.id.widthET);
         final Button printBTN = findViewById(R.id.printBTN);
 
+        Intent ini = getIntent();
+        rightEye = ini.getStringExtra("RIGHT_EYE");
+        leftEye = ini.getStringExtra("LEFT_EYE");
+        theNose = ini.getStringExtra("NOSE");
+        theMouth = ini.getStringExtra("MOUTH");
         printPreview();
 
         printBTN.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +72,77 @@ public class PrintingActivity extends AppCompatActivity {
         Drawable reye = ContextCompat.getDrawable(this, R.drawable.eye2);
         Drawable nose = ContextCompat.getDrawable(this, R.drawable.nose2);
         Drawable mouth = ContextCompat.getDrawable(this, R.drawable.mouth5);
-        //Place holder image to keep ImageView max size (Scaling won't work without it)
+
+        switch(leftEye) {
+            case "eye1":
+                leye = ContextCompat.getDrawable(this, R.drawable.eye1);
+                break;
+            case "eye2":
+                leye = ContextCompat.getDrawable(this, R.drawable.eye2);
+                break;
+            case "eye3":
+                leye = ContextCompat.getDrawable(this, R.drawable.eye3);
+                break;
+            case "eye4":
+                leye = ContextCompat.getDrawable(this, R.drawable.eye4);
+                break;
+            case "eye5":
+                leye = ContextCompat.getDrawable(this, R.drawable.eye5);
+                break;
+        }
+        switch(rightEye) {
+            case "eye1":
+                reye = ContextCompat.getDrawable(this, R.drawable.eye1);
+                break;
+            case "eye2":
+                reye = ContextCompat.getDrawable(this, R.drawable.eye2);
+                break;
+            case "eye3":
+                reye = ContextCompat.getDrawable(this, R.drawable.eye3);
+                break;
+            case "eye4":
+                reye = ContextCompat.getDrawable(this, R.drawable.eye4);
+                break;
+            case "eye5":
+                reye = ContextCompat.getDrawable(this, R.drawable.eye5);
+                break;
+        }
+        switch(theNose) {
+            case "nose1":
+                nose = ContextCompat.getDrawable(this, R.drawable.nose1);
+                break;
+            case "nose2":
+                nose = ContextCompat.getDrawable(this, R.drawable.nose2);
+                break;
+            case "nose3":
+                nose = ContextCompat.getDrawable(this, R.drawable.nose3);
+                break;
+            case "nose4":
+                nose = ContextCompat.getDrawable(this, R.drawable.nose4);
+                break;
+            case "nose5":
+                nose = ContextCompat.getDrawable(this, R.drawable.nose5);
+                break;
+        }
+        switch(theMouth) {
+            case "mouth1":
+                mouth = ContextCompat.getDrawable(this, R.drawable.mouth1);
+                break;
+            case "mouth2":
+                mouth = ContextCompat.getDrawable(this, R.drawable.mouth2);
+                break;
+            case "mouth3":
+                mouth = ContextCompat.getDrawable(this, R.drawable.mouth3);
+                break;
+            case "mouth4":
+                mouth = ContextCompat.getDrawable(this, R.drawable.mouth4);
+                break;
+            case "mouth5":
+                mouth = ContextCompat.getDrawable(this, R.drawable.mouth5);
+                break;
+        }
+
+        //Place holder image to keep ImageView max size (Scaling/Placement won't work without it)
             Drawable ph = ContextCompat.getDrawable(this, R.drawable.eye3);
             ph.mutate();
             ph.setAlpha(0);
@@ -92,7 +172,7 @@ public class PrintingActivity extends AppCompatActivity {
 
     public void printFace(int height, int width) {
         PrintHelper photoPrinter = new PrintHelper(PrintingActivity.this);
-        
+
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.eye1);
         photoPrinter.printBitmap("test print", image);
     }
