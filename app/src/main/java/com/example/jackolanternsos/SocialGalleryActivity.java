@@ -62,7 +62,7 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
                     //if the facelist exists added to the list otherwise when the list is created the element will be added
                     if(pumkinfaceModel.singletonprivate != null) {
                         //add to face list
-                        pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(myModel.socailfacelist.get(hold).righteye, myModel.socailfacelist.get(hold).lefteye, myModel.socailfacelist.get(hold).nose, myModel.socailfacelist.get(hold).mouth));
+                        pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(myModel.socailfacelist.get(hold).lefteye, myModel.socailfacelist.get(hold).righteye, myModel.socailfacelist.get(hold).nose, myModel.socailfacelist.get(hold).mouth));
                         //notify server
                         pumkinfaceModel.getpumkinfaceModel(username).privateAdaptor.notifyDataSetChanged();
                     }
@@ -150,11 +150,9 @@ public class SocialGalleryActivity extends AppCompatActivity implements PublicGa
                 redraw();
             }
         });
+
     }
 
-
-    //RECYCLER VIEW
-    //LIKE INSTAGRAM
 
     //RECYCLER VIEW
     //LIKE INSTAGRAM

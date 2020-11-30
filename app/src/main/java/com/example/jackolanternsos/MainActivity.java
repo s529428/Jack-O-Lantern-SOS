@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
                 UsernameSaveDialogFragment usernameSaveDialogFragment = new UsernameSaveDialogFragment();
                 usernameSaveDialogFragment.show(getSupportFragmentManager(), "Username");
             }
-            ParseObject privatePumpkinFace = new ParseObject("PrivatePumpkinFace");
+            final ParseObject privatePumpkinFace = new ParseObject("PrivatePumpkinFace");
             privatePumpkinFace.put("Username", username);
             privatePumpkinFace.put("LeftEye", lefteyestring);
             privatePumpkinFace.put("RightEye", righteyestring);
@@ -195,9 +195,12 @@ public class MainActivity extends AppCompatActivity implements SaveDialogFragmen
                     //if add was sucessful adding to face list array to be show in recycler view
                     if (e == null) {
                         //add to face list
-                        pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(righteyestring, lefteyestring, nosestring, mouthstring));
+                        pumkinfaceModel.getpumkinfaceModel(username).faceList.add(new pumkinfaceModel.faceData(lefteyestring, righteyestring, nosestring, mouthstring));
                         //notify server
-                        pumkinfaceModel.getpumkinfaceModel(username).privateAdaptor.notifyDataSetChanged();
+                        //checking to make sure the server exists
+                        if (pumkinfaceModel.getpumkinfaceModel(username).pumkinAdapter != null) {
+                            pumkinfaceModel.getpumkinfaceModel(username).privateAdaptor.notifyDataSetChanged();
+                        }
                     }
                 }
             });

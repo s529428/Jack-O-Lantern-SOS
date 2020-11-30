@@ -58,7 +58,7 @@ public class pumkinfaceModel {
                     Log.d("username",""+pumkinList.size());
                     for (int i = 0; i < pumkinList.size(); i++) {
                         ParseObject single = pumkinList.get(i);
-                        faceList.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
+                        faceList.add(new faceData(single.getString("LeftEye"),single.getString("RightEye"),single.getString("Nose"), single.getString("Mouth")));
                     }
                     if(privateAdaptor!=null){
                         privateAdaptor.notifyDataSetChanged();
@@ -82,7 +82,7 @@ public class pumkinfaceModel {
                     for (int i = 0; i < pumkinList.size(); i++) {
                         ParseObject single = pumkinList.get(i);
                         Log.d("table",""+single.getString("RightEye"));
-                        socailfacelist.add(new faceData(single.getString("RightEye"), single.getString("LeftEye"), single.getString("Nose"), single.getString("Mouth")));
+                        socailfacelist.add(new faceData(single.getString("LeftEye"),single.getString("RightEye"), single.getString("Nose"), single.getString("Mouth")));
                     }
                     if(pumkinAdapter!=null){
                         pumkinAdapter.notifyDataSetChanged();
