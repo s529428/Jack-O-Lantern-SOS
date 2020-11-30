@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B65232"
+    android:background="#F18701"
     tools:context=".SocialGalleryActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="39dp"
         android:background="#000000"
-        android:onClick="goToHome"
         android:text="Generate"
         android:textColor="#FAF6F6"
         app:layout_constraintBottom_toTopOf="@+id/pumkinRV"

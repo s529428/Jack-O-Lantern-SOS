@@ -4,24 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B65232"
+    android:background="#F18701"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/galleryBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#000000"
         android:onClick="goToGallery"
         android:text="Gallery"
         android:textColor="#FFFFFF"
-        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"
-        />
+        app:layout_constraintVertical_bias="0.084" />
 
     <Button
         android:id="@+id/socialBTN"
@@ -42,9 +41,9 @@
         android:id="@+id/rollBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#000000"
         android:text="Roll again!"
         android:textColor="#FFFFFF"
-        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,10 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="613dp"
         android:layout_marginBottom="70dp"
+        android:background="#000000"
         android:onClick="goToPrint"
         android:text="Print"
         android:textColor="#FFFFFF"
-        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.801"
