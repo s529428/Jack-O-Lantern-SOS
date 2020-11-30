@@ -4,7 +4,7 @@
 1. Caroline
 
 ## Test Credentials
-You will not need any logins but some activities now require that you set a username before accessing them. Please do that.
+You will not need any logins but some activities now require that you set a username before accessing them. Please do that. "Demo" is a username with faces already saved to galleries.
 ## Supported Devices
 Android devices that are on Marshmallow or higher.
 ## Application Info
