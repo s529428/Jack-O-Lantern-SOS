@@ -180,7 +180,7 @@ public class PrintingActivity extends AppCompatActivity {
         //Places face elements in correct spots
         finalDrawable.setLayerGravity(0, Gravity.LEFT | Gravity.TOP);
         finalDrawable.setLayerGravity(1, Gravity.RIGHT | Gravity.TOP);
-        finalDrawable.setLayerInset(2, 350, 200, 0, 0);
+        finalDrawable.setLayerInset(2, ph.getIntrinsicWidth()/3, ph.getIntrinsicHeight()/5, 0, 0);
         finalDrawable.setLayerGravity(3, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 
         printIV.setImageDrawable(finalDrawable);
@@ -190,7 +190,7 @@ public class PrintingActivity extends AppCompatActivity {
         PrintHelper photoPrinter = new PrintHelper(PrintingActivity.this);
         photoPrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
         ImageView printIV = findViewById(R.id.printIV);
-        Bitmap b = Bitmap.createBitmap((width*250), (height*250), Bitmap.Config.ARGB_8888);
+        Bitmap b = Bitmap.createBitmap(printIV.getDrawable().getIntrinsicWidth(), printIV.getDrawable().getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         printIV.getDrawable().draw(new Canvas(b));
         photoPrinter.printBitmap("test print", b);
     }
