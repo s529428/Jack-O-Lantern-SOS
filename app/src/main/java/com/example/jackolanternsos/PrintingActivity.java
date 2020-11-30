@@ -3,10 +3,10 @@ package com.example.jackolanternsos;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.print.PrintHelper;
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -71,10 +71,10 @@ public class PrintingActivity extends AppCompatActivity {
         //grab the face and put in the preview box
         ImageView printIV = findViewById(R.id.printIV);
         //Initialization for face elements
-        Drawable leye;
-        Drawable reye;
-        Drawable nose;
-        Drawable mouth;
+        Drawable leye = null;
+        Drawable reye = null;
+        Drawable nose = null;
+        Drawable mouth = null;
 
         //Switch statements to set face elements to correct ones based off other activities
         switch(leftEye) {
@@ -93,6 +93,9 @@ public class PrintingActivity extends AppCompatActivity {
             case "eye5":
                 leye = ContextCompat.getDrawable(this, R.drawable.eye5);
                 break;
+            default:
+                Toast.makeText(PrintingActivity.this, "Preview for left eye failed. Default shown.", Toast.LENGTH_LONG).show();
+                break;
         }
         switch(rightEye) {
             case "eye1":
@@ -109,6 +112,9 @@ public class PrintingActivity extends AppCompatActivity {
                 break;
             case "eye5":
                 reye = ContextCompat.getDrawable(this, R.drawable.eye5);
+                break;
+            default:
+                Toast.makeText(PrintingActivity.this, "Preview for right eye failed. Default shown.", Toast.LENGTH_LONG).show();
                 break;
         }
         switch(theNose) {
@@ -127,6 +133,9 @@ public class PrintingActivity extends AppCompatActivity {
             case "nose5":
                 nose = ContextCompat.getDrawable(this, R.drawable.nose5);
                 break;
+            default:
+                Toast.makeText(PrintingActivity.this, "Preview for nose failed. Default shown.", Toast.LENGTH_LONG).show();
+                break;
         }
         switch(theMouth) {
             case "mouth1":
@@ -143,6 +152,9 @@ public class PrintingActivity extends AppCompatActivity {
                 break;
             case "mouth5":
                 mouth = ContextCompat.getDrawable(this, R.drawable.mouth5);
+                break;
+            default:
+                Toast.makeText(PrintingActivity.this, "Preview for mouth failed. Default shown.", Toast.LENGTH_LONG).show();
                 break;
         }
 
@@ -168,7 +180,7 @@ public class PrintingActivity extends AppCompatActivity {
         //Places face elements in correct spots
         finalDrawable.setLayerGravity(0, Gravity.LEFT | Gravity.TOP);
         finalDrawable.setLayerGravity(1, Gravity.RIGHT | Gravity.TOP);
-        finalDrawable.setLayerGravity(2, Gravity.CENTER);
+        finalDrawable.setLayerInset(2, 350, 200, 0, 0);
         finalDrawable.setLayerGravity(3, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 
         printIV.setImageDrawable(finalDrawable);
@@ -176,8 +188,10 @@ public class PrintingActivity extends AppCompatActivity {
 
     public void printFace(int height, int width) {
         PrintHelper photoPrinter = new PrintHelper(PrintingActivity.this);
-
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.eye1);
-        photoPrinter.printBitmap("test print", image);
+        photoPrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
+        ImageView printIV = findViewById(R.id.printIV);
+        Bitmap b = Bitmap.createBitmap((width*250), (height*250), Bitmap.Config.ARGB_8888);
+        printIV.getDrawable().draw(new Canvas(b));
+        photoPrinter.printBitmap("test print", b);
     }
 }
